@@ -18,31 +18,37 @@ public class UserServiceImplement implements UserService {
 
     @Override
     public User getUser(int id) {
+
         return userDao.getUser(id);
     }
 
     @Override
     public User getUser(String nameOrEmail) {
+
         return userDao.getUser(nameOrEmail);
     }
 
     @Override
     public void addUser(User user) {
+
         userDao.addUser(user);
     }
 
     @Override
     public boolean deleteUser(int id) {
+
         return userDao.deleteUser(id);
     }
 
     @Override
     public boolean updateUser(User user) {
+
         return userDao.updateUser(user);
     }
 
     @Override
     public List<User> getAllUser() {
+
         return userDao.getAllUser();
     }
 }

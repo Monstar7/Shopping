@@ -241,6 +241,7 @@
 
 <script type="text/javascript">
     initData();
+
     function initData() {
         var userId = ;
         var user = getUserById(userId);
