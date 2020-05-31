@@ -19,7 +19,7 @@ public class FaceControl {
     @Autowired
     private FaceImpl faceImpl;
 
-    @RequestMapping(value = "/addShoppingEvaluation",method = RequestMethod.POST)
+    @RequestMapping(value = "/face",method = RequestMethod.POST)
     @ResponseBody
     public String face(){
         String pngUrl = "";
