@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>基于表情识别的客户差异化商品推荐系统</title>
+    <title>某某奶茶</title>
     <%--<link href="/Shopping/css/bootstrap.min.css" rel="stylesheet">
     <link href="/Shopping/css/style.css" rel="stylesheet">
 
@@ -37,7 +37,8 @@
     <!-- 尾部 -->
     <hr/>
     <div class="foot-style">
-        在大数据时代背景下,信息过滤是人们必须面对的问题。对于用户不明确或难以表达的需求,推荐系统通过分析用户动态及静态数据,更加主动、智能的过滤信息,从而向用户展示他们潜在需要的东西。
+        本系统目前处于试用版本，如有意见可联系郑州轻工业大学   郭泰
+                            QQ：1023008419
     </div>
     <!-- 结束啦 -->
 

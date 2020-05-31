@@ -8,7 +8,7 @@
 	  <meta charset="utf-8">
 	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <title>基于表情识别的客户差异化商品推荐系统</title>
+	  <title>某某奶茶</title>
 	  <%--<link href="/Shopping../static/css/bootstrap.min.css" rel="stylesheet">
 	  <link href="/Shopping../static/css/style.css" rel="stylesheet">
 
@@ -40,7 +40,8 @@
 			<!-- 控制栏 -->
 			<div class="col-sm-3 col-md-2 sidebar sidebar-1">
 				<ul class="nav nav-sidebar">
-					<li class="list-group-item-diy"><a href="#productArea1">原叶奶茶 <span class="sr-only">(current)</span></a></li>
+<%--					<li class="list-group-item-diy"><a href="#productArea1">原叶奶茶 <span class="sr-only">(current)</span></a></li>--%>
+					<li class="list-group-item-diy"><a href="#productArea1">原叶奶茶 </a></li>
 					<li class="list-group-item-diy"><a href="#productArea2">摇摇奶昔</a></li>
 					<li class="list-group-item-diy"><a href="#productArea3">冰淇淋圣代</a></li>
 					<li class="list-group-item-diy"><a href="#productArea4">真鲜果茶</a></li>
@@ -53,10 +54,132 @@
 			</div>
 			<!-- 控制内容 -->
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<div class="jumbotron">
-					<h1>基于表情识别的客户差异化商品推荐系统</h1>
-					<p>结合大数据处理技术,设计并实现了一个推荐系统,详细阐述了其主要功能的实现方法，设计并实现了一个高效的数据仓库,作为原始数据及推荐引擎离线计算结果的存储仓库。</p>
+				<div class="jumbotron" style="background-image:url('<%=request.getContextPath()%>/img/B1.jpg')">
+					<h1>某某奶茶</h1>
+<%--					<p>结合大数据处理技术,设计并实现了一个推荐系统,详细阐述了其主要功能的实现方法，设计并实现了一个高效的数据仓库,作为原始数据及推荐引擎离线计算结果的存储仓库。</p>--%>
+					<div>
+						<div class="row">
+							<button class="btn btn-primary" onclick="openMedia()">开启摄像头</button>
+							<button class="btn btn-info" onclick="takePhoto()">拍照</button>
+							<button class="btn btn-danger" onclick="closeMedia()">关闭摄像头</button>
+						</div>
+
+						<div class="row">
+							<video id="video" width="500px" height="500px" autoplay="autoplay"></video>
+							<canvas id="canvas" width="500px" height="500px"></canvas>
+							<form id="imgFrom" class="form-horizontal" enctype="multipart/form-data">
+								<div>
+									<img hidden="hidden" id="imgTag" src="" alt="imgTag">
+								</div>
+							</form>
+						</div>
+
+						<!--模态框-->
+						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-body">
+										<form id="carouselFrom" class="form-horizontal" enctype="multipart/form-data">
+											<div class="form-group">
+												<label for="carouselImg" class="col-sm-2 control-label">图片</label>
+												<div class="col-sm-10">
+													<input type="file" class="form-control" name="image" id="carouselImg">
+												</div>
+											</div>
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+										<button type="button" class="btn btn-primary" onclick="saveCarousel()">上传</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+
+
+			</div>
+
+			<script>
+				let mediaStreamTrack = null; // 视频对象(全局)
+				let video;
+
+				function openMedia() {
+					let constraints = {
+						video: {width: 500, height: 500},
+						audio: false
+					};
+					//获得video摄像头
+					video = document.getElementById('video');
+					let promise = navigator.mediaDevices.getUserMedia(constraints);
+					promise.then((mediaStream) => {
+						// mediaStreamTrack = typeof mediaStream.stop === 'function' ? mediaStream : mediaStream.getTracks()[1];
+						mediaStreamTrack = mediaStream.getVideoTracks()
+						video.srcObject = mediaStream;
+					video.play();
+				});
+				}
+
+				// 拍照
+				function takePhoto() {
+					//获得Canvas对象
+					let video = document.getElementById('video');
+					let canvas = document.getElementById('canvas');
+					let ctx = canvas.getContext('2d');
+					ctx.drawImage(video, 0, 0, 500, 500);
+
+
+					// toDataURL  ---  可传入'image/png'---默认, 'image/jpeg'
+					let img = document.getElementById('canvas').toDataURL();
+					// 这里的img就是得到的图片
+					let pic = img.replace(/^data:image\/(png|jpg);base64,/, "");
+					console.log('img-----', pic);
+					//上传
+					$.ajax({
+						url: "http://localhost:8080/carousel/recognitionFaceFromCamera"
+						, type: "POST"
+						, data: {"image": pic}
+						, dataType: "json"
+						, success: function (data) {
+							console.log(data);
+							alert("表情：" + data.msg);
+						}
+						, error: function () {
+							console.log("服务端异常！");
+						}
+					});
+					/*        //将图片保存到本地
+                            let saveFile = function (data, filename) {
+                                let link = document.createElement('a');
+                                link.href = data;
+                                link.download = filename;
+                                let event = document.createEvent('MouseEvents');
+                                event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                                link.dispatchEvent(event);
+                            }
+                            let filename = new Date().toLocaleDateString() + '.' + 'jpeg';
+                            saveFile(img, filename);*/
+
+				}
+
+				// 关闭摄像头
+				function closeMedia() {
+					let stream = document.getElementById('video').srcObject;
+					let tracks = stream.getTracks();
+
+					tracks.forEach(function (track) {
+						track.stop();
+					});
+
+					document.getElementById('video').srcObject = null;
+				}
+			</script>
+
+
+
+
+
 
 				<div name="productArea1" class="row pd-10" id="productArea1">
 				</div>

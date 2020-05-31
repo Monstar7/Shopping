@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>基于表情识别的客户差异化商品推荐系统</title>
+    <title>某某奶茶</title>
    <%-- <link href="/Shopping/css/bootstrap.min.css" rel="stylesheet">
     <link href="/Shopping/css/style.css" rel="stylesheet">
 
@@ -116,7 +116,7 @@
                 '<th>购买数量</th>'+
                 '<th>付款金额</th>'+
                 '<th>订单状态</th>'+
-                '<th>发货</th>'+
+                '<th>制作</th>'+
                 '</tr>';
         var transportHTML = '<tr>'+
                 '<th>处理人</th>'+
@@ -165,7 +165,7 @@
                         '<td>'+allShoppingRecords[i].productPrice+'</td>'+
                         '<td>'+orderArray[allShoppingRecords[i].orderStatus]+'</td>'+
                         '<td>'+
-                        '<button class="btn btn-primary btn-sm" onclick="sendProducts('+allShoppingRecords[i].userId+','+allShoppingRecords[i].productId+',\''+allShoppingRecords[i].time+'\')">发货</button>'+
+                        '<button class="btn btn-primary btn-sm" onclick="sendProducts('+allShoppingRecords[i].userId+','+allShoppingRecords[i].productId+',\''+allShoppingRecords[i].time+'\')">制作</button>'+
                         '</td>'+
                         '</tr>';
                 unHandleCounts++;
@@ -375,7 +375,7 @@
                 sendResult = result.result;
             },
             error : function(result) {
-                layer.alert('发货错误');
+                layer.alert('暂时无法制作');
             }
         });
         if(sendResult == "success")
