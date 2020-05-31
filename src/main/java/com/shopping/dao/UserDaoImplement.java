@@ -53,12 +53,13 @@ public class UserDaoImplement implements UserDao {
 
     @Override
     public boolean updateUser(User user) {
-        String hql = "update User set name = ?,email=?,nickName=? where id=?";
+        String hql = "update User set name = ?,email=?,nickName=?,role=? where id=?";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
         query.setParameter(0,user.getName());
         query.setParameter(1,user.getEmail());
         query.setParameter(2,user.getNickName());
-        query.setParameter(3,user.getId());
+        query.setParameter(3,user.getRole());
+        query.setParameter(4,user.getId());
         return query.executeUpdate() > 0;
     }
 

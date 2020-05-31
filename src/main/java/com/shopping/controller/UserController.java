@@ -96,7 +96,7 @@ public class UserController {
                 System.out.println(email);
                 user1.setNickName(nickName);
                 System.out.println(nickName);
-                user1.setRole(0);
+                user1.setRole(1);
                 userService.addUser(user1);
                 user1 = userService.getUser(userName);
                 UserDetail userDetail = new UserDetail();

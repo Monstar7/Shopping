@@ -203,6 +203,7 @@
             user.postNumber = document.getElementById("postcodes").value;
             user.address = document.getElementById("address").value;
             user.sex = 0;
+            user.role = 1;
             if(document.getElementById("woman").checked)
                 user.sex = 1;
             if(user.userName == ''){

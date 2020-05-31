@@ -51,9 +51,9 @@
         <div class="col-sm-10  col-md-10 col-sm-offset-1 col-md-offset-1">
             <div class="row">
                 <ul class="nav nav-tabs list-group-diy" role="tablist">
-                    <li role="presentation" class="active list-group-item-diy"><a href="#unHandle" aria-controls="unHandle" role="tab" data-toggle="tab">待发货订单&nbsp;<span class="badge" id="unHandleCount">0</span></a></li>
-                    <li role="presentation" class="list-group-item-diy"><a href="#transport" aria-controls="transport" role="tab" data-toggle="tab">运输中订单&nbsp;<span class="badge" id="transportCount">0</span></a></li>
-                    <li role="presentation" class="list-group-item-diy"><a href="#receive" aria-controls="receive" role="tab" data-toggle="tab">已收货订单&nbsp;<span class="badge" id="receiveCount">0</span></a></li>
+                    <li role="presentation" class="active list-group-item-diy"><a href="#unHandle" aria-controls="unHandle" role="tab" data-toggle="tab">未制作&nbsp;<span class="badge" id="unHandleCount">0</span></a></li>
+                    <li role="presentation" class="list-group-item-diy"><a href="#transport" aria-controls="transport" role="tab" data-toggle="tab">正在制作中&nbsp;<span class="badge" id="transportCount">0</span></a></li>
+                    <li role="presentation" class="list-group-item-diy"><a href="#receive" aria-controls="receive" role="tab" data-toggle="tab">制作完成&nbsp;<span class="badge" id="receiveCount">0</span></a></li>
                     <li role="presentation" class="list-group-item-diy"><a href="#all" aria-controls="all" role="tab" data-toggle="tab">全部订单&nbsp;<span class="badge" id="allCount">0</span></a></li>
                 </ul>
 
@@ -88,9 +88,9 @@
 
     function updateShoppingRecords() {
         var orderArray = new Array;
-        orderArray[0] = "未发货";
-        orderArray[1] = "配送中";
-        orderArray[2] = "已收货";
+        orderArray[0] = "未制作";
+        orderArray[1] = "制作中";
+        orderArray[2] = "已完成";
         var unHandleTable = document.getElementById("unHandleTable");
         var transportTable = document.getElementById("transportTable");
         var receiveTable = document.getElementById("receiveTable");
@@ -124,7 +124,7 @@
                 '<th>送货地址</th>'+
                 '<th>联系电话</th>'+
                 '<th>订单状态</th>'+
-                '<th>确认收货</th>'+
+                '<th>完成交易</th>'+
                 '</tr>';
         var receiveHTML = '<tr>'+
                 '<th>商品名称</th>'+
@@ -173,7 +173,7 @@
                         '<td>'+phoneNumber+'</td>'+
                         '<td>'+orderArray[allShoppingRecords[i].orderStatus]+'</td>'+
                         '<td>'+
-                        '<button class="btn btn-primary btn-sm" onclick="receiveProducts('+allShoppingRecords[i].userId+','+allShoppingRecords[i].productId+',\''+allShoppingRecords[i].time+'\')">确认收货</button>'+
+                        '<button class="btn btn-primary btn-sm" onclick="receiveProducts('+allShoppingRecords[i].userId+','+allShoppingRecords[i].productId+',\''+allShoppingRecords[i].time+'\')">完成交易</button>'+
                         '</td>'+
                         '</tr>';
                 transportCounts++;
@@ -387,9 +387,9 @@
 
     function updateShoppingRecords() {
         var orderArray = new Array;
-        orderArray[0] = "未发货";
-        orderArray[1] = "配送中";
-        orderArray[2] = "已收货";
+        orderArray[0] = "未制作";
+        orderArray[1] = "制作中";
+        orderArray[2] = "已完成";
         var unHandleTable = document.getElementById("unHandleTable");
         var transportTable = document.getElementById("transportTable");
         var receiveTable = document.getElementById("receiveTable");
@@ -423,7 +423,7 @@
             '<th>送货地址</th>'+
             '<th>联系电话</th>'+
             '<th>订单状态</th>'+
-            '<th>确认收货</th>'+
+            '<th>完成交易</th>'+
             '</tr>';
         var receiveHTML = '<tr>'+
             '<th>商品名称</th>'+
@@ -472,7 +472,7 @@
                     '<td>'+phoneNumber+'</td>'+
                     '<td>'+orderArray[allShoppingRecords[i].orderStatus]+'</td>'+
                     '<td>'+
-                    '<button class="btn btn-primary btn-sm" onclick="receiveProducts('+allShoppingRecords[i].userId+','+allShoppingRecords[i].productId+',\''+allShoppingRecords[i].time+'\')">确认收货</button>'+
+                    '<button class="btn btn-primary btn-sm" onclick="receiveProducts('+allShoppingRecords[i].userId+','+allShoppingRecords[i].productId+',\''+allShoppingRecords[i].time+'\')">完成交易</button>'+
                     '</td>'+
                     '</tr>';
                 transportCounts++;
