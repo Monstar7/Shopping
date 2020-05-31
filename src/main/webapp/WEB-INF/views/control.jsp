@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>基于在线推荐购物系统</title>
+    <title>基于表情识别的客户差异化商品推荐系统</title>
       <%--<link href="/Shopping/css/bootstrap.min.css" rel="stylesheet">
       <link href="/Shopping/css/style.css" rel="stylesheet">
 
@@ -109,7 +109,7 @@
                                 <label for="productType" class="col-sm-2 col-md-2 control-label">商品类别</label>
                                 <div class="col-sm-6 col-md-6">
                                     <select name="productType" class="form-control" id="productType">
-                                        <option value="1">衣服配饰</option>
+                                        <option value="1">原叶奶茶</option>
                                         <option value="2">摇摇奶昔</option>
                                         <option value="3">冰淇淋圣代</option>
                                         <option value="4">真鲜果茶</option>

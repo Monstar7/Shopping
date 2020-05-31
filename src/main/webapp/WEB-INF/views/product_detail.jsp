@@ -84,7 +84,7 @@
                             <th>商品类别</th>
                             <td>
                                 <c:if test="${'1' eq productDetail.type}">
-                                    衣服配饰
+                                    原叶奶茶
                                 </c:if>
                                 <c:if test="${'2' eq productDetail.type}">
                                     摇摇奶昔

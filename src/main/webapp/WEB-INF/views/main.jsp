@@ -8,7 +8,7 @@
 	  <meta charset="utf-8">
 	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <title>基于在线推荐购物系统</title>
+	  <title>基于表情识别的客户差异化商品推荐系统</title>
 	  <%--<link href="/Shopping../static/css/bootstrap.min.css" rel="stylesheet">
 	  <link href="/Shopping../static/css/style.css" rel="stylesheet">
 
@@ -40,7 +40,7 @@
 			<!-- 控制栏 -->
 			<div class="col-sm-3 col-md-2 sidebar sidebar-1">
 				<ul class="nav nav-sidebar">
-					<li class="list-group-item-diy"><a href="#productArea1">衣服配饰 <span class="sr-only">(current)</span></a></li>
+					<li class="list-group-item-diy"><a href="#productArea1">原叶奶茶 <span class="sr-only">(current)</span></a></li>
 					<li class="list-group-item-diy"><a href="#productArea2">摇摇奶昔</a></li>
 					<li class="list-group-item-diy"><a href="#productArea3">冰淇淋圣代</a></li>
 					<li class="list-group-item-diy"><a href="#productArea4">真鲜果茶</a></li>
@@ -93,7 +93,7 @@
 	  var loading = layer.load(0);
 
       var productType = new Array;
-      productType[1] = "衣服配饰";
+      productType[1] = "原叶奶茶";
       productType[2] = "摇摇奶昔";
       productType[3] = "冰淇淋圣代";
       productType[4] = "真鲜果茶";
@@ -235,7 +235,7 @@
         var loading = layer.load(0);
 
         var productType = new Array;
-        productType[1] = "衣服配饰";
+        productType[1] = "原叶奶茶";
         productType[2] = "数码产品";
         productType[3] = "书籍办公";
         productType[4] = "游戏周边";
