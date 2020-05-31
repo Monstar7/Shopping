@@ -41,12 +41,12 @@
 			<div class="col-sm-3 col-md-2 sidebar sidebar-1">
 				<ul class="nav nav-sidebar">
 					<li class="list-group-item-diy"><a href="#productArea1">衣服配饰 <span class="sr-only">(current)</span></a></li>
-					<li class="list-group-item-diy"><a href="#productArea2">数码产品</a></li>
-					<li class="list-group-item-diy"><a href="#productArea3">书籍办公</a></li>
-					<li class="list-group-item-diy"><a href="#productArea4">游戏周边</a></li>
-					<li class="list-group-item-diy"><a href="#productArea5">生活用品</a></li>
-					<li class="list-group-item-diy"><a href="#productArea6">化妆用品</a></li>
-					<li class="list-group-item-diy"><a href="#productArea7">运动用品</a></li>
+					<li class="list-group-item-diy"><a href="#productArea2">摇摇奶昔</a></li>
+					<li class="list-group-item-diy"><a href="#productArea3">冰淇淋圣代</a></li>
+					<li class="list-group-item-diy"><a href="#productArea4">真鲜果茶</a></li>
+					<li class="list-group-item-diy"><a href="#productArea5">芝士奶盖</a></li>
+					<li class="list-group-item-diy"><a href="#productArea6">特色奶茶</a></li>
+					<li class="list-group-item-diy"><a href="#productArea7">原叶纯茶</a></li>
 					<li class="list-group-item-diy"><a href="#productArea00"></a></li>
 					<li class="list-group-item-diy"><a href="#productArea8">个性化推荐</a></li>
 				</ul>
@@ -54,7 +54,7 @@
 			<!-- 控制内容 -->
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<div class="jumbotron">
-					<h1>欢迎来到在线推荐购物系统</h1>
+					<h1>基于表情识别的客户差异化商品推荐系统</h1>
 					<p>结合大数据处理技术,设计并实现了一个推荐系统,详细阐述了其主要功能的实现方法，设计并实现了一个高效的数据仓库,作为原始数据及推荐引擎离线计算结果的存储仓库。</p>
 				</div>
 
@@ -94,12 +94,12 @@
 
       var productType = new Array;
       productType[1] = "衣服配饰";
-      productType[2] = "数码产品";
-      productType[3] = "书籍办公";
-      productType[4] = "游戏周边";
-      productType[5] = "生活用品";
-      productType[6] = "化妆用品";
-      productType[7] = "运动用品";
+      productType[2] = "摇摇奶昔";
+      productType[3] = "冰淇淋圣代";
+      productType[4] = "真鲜果茶";
+      productType[5] = "芝士奶盖";
+      productType[6] = "特色奶茶";
+      productType[7] = "原叶纯茶";
       productType[8] = "个性化推荐";
 
 	  listProducts();
@@ -190,8 +190,7 @@
               success : function(result) {
                   if (result!=null) {
                       allProducts = result.allProducts;
-                  }
-                  else{
+                  } else{
                       layer.alert('查询错误');
                   }
               },

@@ -17,6 +17,9 @@ public class Product {
     private int price;
     private int counts;
     private int type;
+    private int traffic;
+
+
 
     @Id
     @GenericGenerator(name = "generator", strategy = "increment") //设置主键自增
@@ -30,6 +33,11 @@ public class Product {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Column(name="traffic")
+    public int getTraffic() { return traffic; }
+
+    public void setTraffic(int traffic) { this.traffic = traffic; }
 
     @Column(name="name")
     public String getName() {

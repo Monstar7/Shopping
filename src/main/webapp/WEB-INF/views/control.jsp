@@ -110,12 +110,12 @@
                                 <div class="col-sm-6 col-md-6">
                                     <select name="productType" class="form-control" id="productType">
                                         <option value="1">衣服配饰</option>
-                                        <option value="2">数码产品</option>
-                                        <option value="3">书籍办公</option>
-                                        <option value="4">游戏周边</option>
-                                        <option value="5">生活用品</option>
-                                        <option value="6">化妆用品</option>
-                                        <option value="7">运动用品</option>
+                                        <option value="2">摇摇奶昔</option>
+                                        <option value="3">冰淇淋圣代</option>
+                                        <option value="4">真鲜果茶</option>
+                                        <option value="5">芝士奶盖</option>
+                                        <option value="6">特色奶茶</option>
+                                        <option value="7">原叶纯茶</option>
                                     </select>
                                 </div>
                             </div>
@@ -479,7 +479,7 @@
                         layer.alert('查询所有商品错误');
                     }
                 },
-                error : function(resoult) {
+                error : function(result) {
                     layer.alert('查询所有商品错误');
                 }
             });

@@ -9,6 +9,7 @@ import com.shopping.entity.User;
 import com.shopping.service.ProductService;
 import com.shopping.service.ShoppingCarService;
 import com.shopping.service.ShoppingRecordService;
+import org.junit.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,6 +83,7 @@ public class ProductController {
             /**
              * 对信息进行筛选，获得需要的信息
              */
+            //如果购物车里>1,把购物车里第一件商品加入推荐列表
             if (shoppingCarList.size()>0){
                 Product pp = productService.getProduct(shoppingCarList.get(0).getProductId());
                 productRcommand.add(pp);
@@ -104,6 +106,7 @@ public class ProductController {
              *
              * 提取关键词、提取需要的信息
              */
+            //如果推荐列表里商品不为0件，对每件商品的名字进行切割，使名字小于三个字
             if (productRcommand.size()>0){
                 for (int i=0;i<productRcommand.size();i++){
                     String namet=productRcommand.get(i).getName();

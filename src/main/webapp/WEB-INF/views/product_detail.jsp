@@ -87,22 +87,22 @@
                                     衣服配饰
                                 </c:if>
                                 <c:if test="${'2' eq productDetail.type}">
-                                    数码产品
+                                    摇摇奶昔
                                 </c:if>
                                 <c:if test="${'3' eq productDetail.type}">
-                                    书籍办公
+                                    冰淇淋圣代
                                 </c:if>
                                 <c:if test="${'4' eq productDetail.type}">
-                                    游戏周边
+                                    真鲜果茶
                                 </c:if>
                                 <c:if test="${'5' eq productDetail.type}">
-                                    生活用品
+                                    芝士奶盖
                                 </c:if>
                                 <c:if test="${'6' eq productDetail.type}">
-                                    化妆用品
+                                    特色奶茶
                                 </c:if>
                                 <c:if test="${'7' eq productDetail.type}">
-                                    运动用品
+                                    原叶纯茶
                                 </c:if>
 
 
