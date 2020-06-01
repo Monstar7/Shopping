@@ -40,8 +40,8 @@
 			<!-- 控制栏 -->
 			<div class="col-sm-3 col-md-2 sidebar sidebar-1">
 				<ul class="nav nav-sidebar">
-<%--					<li class="list-group-item-diy"><a href="#productArea1">原叶奶茶 <span class="sr-only">(current)</span></a></li>--%>
-					<li class="list-group-item-diy"><a href="#productArea1">原叶奶茶 </a></li>
+					<li class="list-group-item-diy"><a href="#productArea1">原叶奶茶 <span class="sr-only">(current)</span></a></li>
+<%--					<li class="list-group-item-diy"><a href="#productArea1">原叶奶茶 </a></li>--%>
 					<li class="list-group-item-diy"><a href="#productArea2">摇摇奶昔</a></li>
 					<li class="list-group-item-diy"><a href="#productArea3">冰淇淋圣代</a></li>
 					<li class="list-group-item-diy"><a href="#productArea4">真鲜果茶</a></li>
@@ -56,7 +56,7 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<div class="jumbotron" style="background-image:url('<%=request.getContextPath()%>/img/B1.jpg')">
 					<h1>某某奶茶</h1>
-<%--					<p>结合大数据处理技术,设计并实现了一个推荐系统,详细阐述了其主要功能的实现方法，设计并实现了一个高效的数据仓库,作为原始数据及推荐引擎离线计算结果的存储仓库。</p>--%>
+<%--&lt;%&ndash;					<p>结合大数据处理技术,设计并实现了一个推荐系统,详细阐述了其主要功能的实现方法，设计并实现了一个高效的数据仓库,作为原始数据及推荐引擎离线计算结果的存储仓库。</p>&ndash;%&gt;--%>
 					<div>
 						<div class="row">
 							<button class="btn btn-primary" onclick="openMedia()">开启摄像头</button>
@@ -65,8 +65,10 @@
 						</div>
 
 						<div class="row">
-							<video id="video" width="500px" height="500px" autoplay="autoplay"></video>
-							<canvas id="canvas" width="500px" height="500px"></canvas>
+<%--							<video id="video" width="500px" height="500px" autoplay="autoplay"></video>--%>
+<%--							<canvas id="canvas" width="500px" height="500px"></canvas>--%>
+							<video id="video" width="400px" height="400px" autoplay="autoplay"></video>
+							<canvas id="canvas" width="400px" height="400px"></canvas>
 							<form id="imgFrom" class="form-horizontal" enctype="multipart/form-data">
 								<div>
 									<img hidden="hidden" id="imgTag" src="" alt="imgTag">
@@ -75,26 +77,26 @@
 						</div>
 
 						<!--模态框-->
-						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-body">
-										<form id="carouselFrom" class="form-horizontal" enctype="multipart/form-data">
-											<div class="form-group">
-												<label for="carouselImg" class="col-sm-2 control-label">图片</label>
-												<div class="col-sm-10">
-													<input type="file" class="form-control" name="image" id="carouselImg">
-												</div>
-											</div>
-										</form>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-										<button type="button" class="btn btn-primary" onclick="saveCarousel()">上传</button>
-									</div>
-								</div>
-							</div>
-						</div>
+<%--						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">--%>
+<%--							<div class="modal-dialog" role="document">--%>
+<%--								<div class="modal-content">--%>
+<%--									<div class="modal-body">--%>
+<%--										<form id="carouselFrom" class="form-horizontal" enctype="multipart/form-data">--%>
+<%--											<div class="form-group">--%>
+<%--												<label for="carouselImg" class="col-sm-2 control-label">图片</label>--%>
+<%--												<div class="col-sm-10">--%>
+<%--													<input type="file" class="form-control" name="image" id="carouselImg">--%>
+<%--												</div>--%>
+<%--											</div>--%>
+<%--										</form>--%>
+<%--									</div>--%>
+<%--									<div class="modal-footer">--%>
+<%--										<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>--%>
+<%--										<button type="button" class="btn btn-primary" onclick="saveCarousel()">上传</button>--%>
+<%--									</div>--%>
+<%--								</div>--%>
+<%--							</div>--%>
+<%--						</div>--%>
 					</div>
 				</div>
 
@@ -145,7 +147,7 @@
 						success:function(res){
 							res = decodeURI(res)
 							console.log(res);
-							alert("表情：" + res);
+							alert("该顾客的表情为：" + res+"特别推荐商品请查看推荐列表@_@~");
 						}
 						, error: function () {
 							console.log("服务端异常！");
