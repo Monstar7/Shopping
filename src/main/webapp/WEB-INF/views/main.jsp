@@ -128,7 +128,7 @@
 					let canvas = document.getElementById('canvas');
 					let ctx = canvas.getContext('2d');
 					ctx.drawImage(video, 0, 0, 500, 500);
-
+					$("canvas").show();
 
 					// toDataURL  ---  可传入'image/png'---默认, 'image/jpeg'
 					let img = document.getElementById('canvas').toDataURL();
@@ -137,13 +137,15 @@
 					console.log('img-----', pic);
 					//上传
 					$.ajax({
-						url: "http://localhost:8080/carousel/recognitionFaceFromCamera"
-						, type: "POST"
-						, data: {"image": pic}
-						, dataType: "json"
-						, success: function (data) {
-							console.log(data);
-							alert("表情：" + data.msg);
+						url: "/Shopping/face",
+						type: "POST",
+						data: {"image": pic},
+						async : false,
+						dataType: "text",
+						success:function(res){
+							res = decodeURI(res)
+							console.log(res);
+							alert("表情：" + res);
 						}
 						, error: function () {
 							console.log("服务端异常！");
@@ -173,6 +175,9 @@
 					});
 
 					document.getElementById('video').srcObject = null;
+					/*var canvas = document.getElementById('canvas');
+					canvas.parentNode.removeChild(canvas);*/
+					$("canvas").hide();
 				}
 			</script>
 
