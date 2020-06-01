@@ -20,6 +20,8 @@ public interface ProductDao {
 
     public List<Product> getProductsByKeyWord(String searchKeyWord);
 
+    public List<Product> getProductsByFace(String faceCode);
+
     public List<Product> getProductsByType(int type);
 
     public List<Product> getAllProduct();

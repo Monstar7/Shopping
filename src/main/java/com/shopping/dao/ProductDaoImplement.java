@@ -74,6 +74,16 @@ public class ProductDaoImplement implements ProductDao {
     }
 
     @Override
+    public List<Product> getProductsByFace(String faceCode) {
+        System.out.println("我搜索了"+faceCode);
+        Integer faceCode2 = Integer.valueOf(faceCode);
+        String hql = "from Product where traffic = ?";
+        Query query = sessionFactory.getCurrentSession().createQuery(hql);
+        query.setParameter(0,faceCode2);
+        return query.list();
+    }
+
+    @Override
     public List<Product> getProductsByType(int type) {
         String hql = "from Product where type=?";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);

@@ -47,6 +47,11 @@ public class ProductServiceImplement implements ProductService {
     }
 
     @Override
+    public List<Product> getProductsByFace(String faceCode) {
+        return productDao.getProductsByFace(faceCode);
+    }
+
+    @Override
     public List<Product> getProductsByType(int type) {
         return productDao.getProductsByType(type);
     }
