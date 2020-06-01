@@ -2,7 +2,10 @@ package com.shopping.service;
 
 
 import com.baidu.aip.face.AipFace;
+import com.shopping.dao.ProductDao;
+import com.shopping.entity.Product;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sun.misc.BASE64Encoder;
 
@@ -15,7 +18,11 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class FaceImpl {
+public class FaceImpl implements Face{
+
+
+    @Autowired
+    private ProductDao productDao;
 
     public static List<String> faceIdentify(String imageUrl){
         ArrayList<String> z_results = new ArrayList<>();
@@ -69,5 +76,80 @@ public class FaceImpl {
         BASE64Encoder encoder = new BASE64Encoder();
         return encoder.encode(data);// 返回Base64编码过的字节数组字符串
     }
+
+    @Override
+    public List<String> faceRecomment(String s){
+
+        String faceRes = "";
+        String faceCode = "";
+        List<String> faces = new ArrayList();
+        /**
+         * 表情对应解析及编码
+         * angry:愤怒:1
+         * disgust:厌恶:2
+         * fear:恐惧:3
+         * happy:高兴:4
+         * sad:伤心:5
+         * surprise:惊讶:6
+         * neutral:无表情:7
+         * pouty: 撅嘴:8
+         * grimace:鬼脸:9
+         */
+        switch (s){
+            case "angry" :
+                faceRes = "愤怒";
+                faceCode = "1";
+                break;
+            case "disgust" :
+                faceRes = "厌恶";
+                faceCode = "2";
+                break;
+            case "fear" :
+                faceRes = "恐惧";
+                faceCode = "3";
+                break;
+            case "happy" :
+                faceRes = "高兴";
+                faceCode = "4";
+                break;
+            case "sad" :
+                faceRes = "伤心";
+                faceCode = "5";
+                break;
+            case "surprise" :
+                faceRes = "惊讶";
+                faceCode = "6";
+                break;
+            case "neutral" :
+                faceRes = "表情自然";
+                faceCode = "7";
+                break;
+            case "pouty" :
+                faceRes = "撅嘴";
+                faceCode = "8";
+                break;
+            case "grimace" :
+                faceRes = "鬼脸";
+                faceCode = "9";
+                break;
+            default:
+                faceRes = "表情自然";
+                faceCode = "7";
+                break;
+        }
+        faces.add(s);
+        faces.add(faceRes);
+        faces.add(faceCode);
+        return faces;
+    }
+
+
+
+    public List<Product> getProductsByFace(String faceCode){
+        return productDao.getProductsByFace(faceCode);
+
+    }
+
+
 
 }

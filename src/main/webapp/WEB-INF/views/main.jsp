@@ -141,9 +141,11 @@
 						type: "POST",
 						data: {"image": pic},
 						async : false,
-						dataType: "text",
+						dataType: "json",
 						success:function(res){
+							var faceJieguo = res.get(1)
 							res = decodeURI(res)
+							getAllProducesByFaceCode(7);
 							console.log(res);
 							alert("表情：" + res);
 						}
@@ -178,7 +180,35 @@
 					/*var canvas = document.getElementById('canvas');
 					canvas.parentNode.removeChild(canvas);*/
 					$("canvas").hide();
+				};
+				function getAllProducesByFaceCode(faceCode){
+					var allProducts = null;
+					var nothing = {};
+					var user = {};
+					user.userId = "${currentUser.id}";
+					$.ajax({
+						async : false, //设置同步
+						type : 'POST',
+						/*url : '/Shopping/getAllProducts',*/
+						url : '/Shopping/getAllProductFaceRecomand',
+						data : {"faceCode": faceCode},
+						dataType : 'json',
+						success : function(result) {
+							if (result!=null) {
+								allProducts = result.allProducts;
+							} else{
+								layer.alert('查询错误');
+							}
+						},
+						error : function(resoult) {
+							layer.alert('查询错误');
+						}
+					});
+					//划重点划重点，这里的eval方法不同于prase方法，外面加括号
+					allProducts = eval("("+allProducts+")");
+					return allProducts;
 				}
+
 			</script>
 
 
