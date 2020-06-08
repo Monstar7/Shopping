@@ -33,10 +33,12 @@
 
   </head>
   <body>
+
     <!--导航栏部分-->
 	<jsp:include page="include/header.jsp"/>
 	<!-- 中间内容 -->
 	<div class="container-fluid">
+		<input type="hidden" id="faceFlag" value="">
 		<div class="row">
 			<!-- 控制栏 -->
 			<div class="col-sm-3 col-md-2 sidebar sidebar-1">
@@ -119,19 +121,13 @@
 						async : false,
 						dataType: "json",
 						success:function(res){
-
-							var faceRes = res;
-							// var facecode = '';
-							facecode=res[1];
-							res = decodeURI(res)
-
-
+							var faceJieguo = res[1];
+							faceFlag2 = res[2];
+							res = decodeURI(res);
+							listProducts();
 							getAllProducesByFaceCode(7);
 							console.log(res);
-							alert("该顾客的表情为：" + facecode+",特别推荐商品请查看推荐列表@_@~");
-
-							faceRecommand()
-
+							alert("该顾客的表情为：" + res+"特别推荐商品请查看推荐列表@_@~");
 						}
 						, error: function () {
 							console.log("服务端异常！");
@@ -165,8 +161,6 @@
 					canvas.parentNode.removeChild(canvas);*/
 					$("canvas").hide();
 				};
-
-
 				function getAllProducesByFaceCode(faceCode){
 					var allProducts = null;
 					var nothing = {};
@@ -191,57 +185,9 @@
 						}
 					});
 					//划重点划重点，这里的eval方法不同于prase方法，外面加括号
-					// allProducts = eval("("+allProducts+")");
+					allProducts = eval("("+allProducts+")");
 					return allProducts;
 				}
-
-
-				var loading = layer.load(0);
-				var productType = new Array;
-				productType[1] = "原叶奶茶";
-				productType[2] = "摇摇奶昔";
-				productType[3] = "冰淇淋圣代";
-				productType[4] = "真鲜果茶";
-				productType[5] = "芝士奶盖";
-				productType[6] = "特色奶茶";
-				productType[7] = "原叶纯茶";
-				productType[8] = "个性化推荐";
-				function faceRecommand() {
-					var mark = new Array;
-					mark[1] = 0;
-					mark[2] = 0;
-					mark[3] = 0;
-					mark[4] = 0;
-					mark[5] = 0;
-					mark[6] = 0;
-					mark[7] = 0;
-					mark[8] = 0;
-					user.userId = "${currentUser.id}";
-					var allProduct = getAllProducesByFaceCode()
-					for(var i=0;i<allProduct.length;i++){
-						if(allProduct[i].traffic == null || allProduct[i].id == undefined || allProduct[i].traffic =="") {
-
-						}else {
-
-							var html = "";
-							var imgURL = "/Shopping/img/"+allProduct[i].id+".jpg";
-							html += '<div class="col-sm-4 col-md-4" >'+
-									'<div class="boxes pointer" onclick="productDetail('+allProduct[i].id+')">'+
-									'<div class="big bigimg">'+
-									'<img src="'+imgURL+'">'+
-									'</div>'+
-									'<p class="product-name">'+allProduct[i].name+'</p>'+
-									'<p class="product-price">¥'+allProduct[i].price+'</p>'+
-									'</div>'+
-									'</div>';
-							var id = "productArea8";
-							var productArea = document.getElementById(id);
-							productArea.innerHTML += html;
-						}
-					}
-					layer.close(loading);
-				}
-
 
 			</script>
 
@@ -283,6 +229,7 @@
   <script type="text/javascript">
 
 	  var loading = layer.load(0);
+	  var faceFlag2 = '';
 
       var productType = new Array;
       productType[1] = "原叶奶茶";
@@ -304,6 +251,9 @@
           }else {
               var allProduct = getAllProducts();
           }
+          if (faceFlag2){
+			  var allProduct = getAllProducesByFaceCode(faceFlag2);
+		  }
           var mark = new Array;
           mark[1] = 0;
           mark[2] = 0;
@@ -418,6 +368,39 @@
 		  if(jumpResult == "success"){
 			  window.location.href = "/Shopping/product_detail";
 		  }
+	  }
+
+	  /**
+	   * 人脸识别推荐
+	   * @param faceCode
+	   * @returns {*}
+	   */
+	  function getAllProducesByFaceCode(faceCode){
+		  var allProducts = null;
+		  var nothing = {};
+		  var user = {};
+		  user.userId = "${currentUser.id}";
+		  $.ajax({
+			  async : false, //设置同步
+			  type : 'POST',
+			  /*url : '/Shopping/getAllProducts',*/
+			  url : '/Shopping/getAllProductFaceRecomand',
+			  data : {"faceCode": faceCode},
+			  dataType : 'json',
+			  success : function(result) {
+				  if (result!=null) {
+					  allProducts = result.allProducts;
+				  } else{
+					  layer.alert('查询错误');
+				  }
+			  },
+			  error : function(resoult) {
+				  layer.alert('查询错误');
+			  }
+		  });
+		  //划重点划重点，这里的eval方法不同于prase方法，外面加括号
+		  allProducts = eval("("+allProducts+")");
+		  return allProducts;
 	  }
 
   </script>
