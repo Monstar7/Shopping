@@ -243,10 +243,10 @@
     initData();
 
     function initData() {
-        var userId = "";
+        var userId = "${currentUser.id}";
         var user = getUserById(userId);
         var userDetail = getUserDetailById(userId);
-        document.getElementById("inputUserName").value = user.userName;
+        document.getElementById("inputUserName").value = user.name;
         document.getElementById("inputEmail").value = user.email;
         document.getElementById("inputNickname").value = user.nickName;
         document.getElementById("inputPassword").value = userDetail.password;
