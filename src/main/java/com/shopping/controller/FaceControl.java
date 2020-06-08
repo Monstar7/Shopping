@@ -107,6 +107,10 @@ public class FaceControl {
              */
 
             productList = productService.getProductsByFace(faceCode);
+
+            for (Product product : productList) {
+                product.setType(8);
+            }
         }
 
         /**

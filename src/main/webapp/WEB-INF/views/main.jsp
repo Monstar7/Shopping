@@ -33,10 +33,12 @@
 
   </head>
   <body>
+
     <!--导航栏部分-->
 	<jsp:include page="include/header.jsp"/>
 	<!-- 中间内容 -->
 	<div class="container-fluid">
+		<input type="hidden" id="faceFlag" value="">
 		<div class="row">
 			<!-- 控制栏 -->
 			<div class="col-sm-3 col-md-2 sidebar sidebar-1">
@@ -119,8 +121,10 @@
 						async : false,
 						dataType: "json",
 						success:function(res){
-							var faceJieguo = res.get(1)
-							res = decodeURI(res)
+							var faceJieguo = res[1];
+							faceFlag2 = res[2];
+							res = decodeURI(res);
+							listProducts();
 							getAllProducesByFaceCode(7);
 							console.log(res);
 							alert("该顾客的表情为：" + res+"特别推荐商品请查看推荐列表@_@~");
@@ -225,6 +229,7 @@
   <script type="text/javascript">
 
 	  var loading = layer.load(0);
+	  var faceFlag2 = '';
 
       var productType = new Array;
       productType[1] = "原叶奶茶";
@@ -246,6 +251,9 @@
           }else {
               var allProduct = getAllProducts();
           }
+          if (faceFlag2){
+			  var allProduct = getAllProducesByFaceCode(faceFlag2);
+		  }
           var mark = new Array;
           mark[1] = 0;
           mark[2] = 0;
@@ -360,6 +368,39 @@
 		  if(jumpResult == "success"){
 			  window.location.href = "/Shopping/product_detail";
 		  }
+	  }
+
+	  /**
+	   * 人脸识别推荐
+	   * @param faceCode
+	   * @returns {*}
+	   */
+	  function getAllProducesByFaceCode(faceCode){
+		  var allProducts = null;
+		  var nothing = {};
+		  var user = {};
+		  user.userId = "${currentUser.id}";
+		  $.ajax({
+			  async : false, //设置同步
+			  type : 'POST',
+			  /*url : '/Shopping/getAllProducts',*/
+			  url : '/Shopping/getAllProductFaceRecomand',
+			  data : {"faceCode": faceCode},
+			  dataType : 'json',
+			  success : function(result) {
+				  if (result!=null) {
+					  allProducts = result.allProducts;
+				  } else{
+					  layer.alert('查询错误');
+				  }
+			  },
+			  error : function(resoult) {
+				  layer.alert('查询错误');
+			  }
+		  });
+		  //划重点划重点，这里的eval方法不同于prase方法，外面加括号
+		  allProducts = eval("("+allProducts+")");
+		  return allProducts;
 	  }
 
   </script>
