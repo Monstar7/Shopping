@@ -119,11 +119,19 @@
 						async : false,
 						dataType: "json",
 						success:function(res){
-							var faceJieguo = res.get(1)
+
+							var faceRes = res;
+							// var facecode = '';
+							facecode=res[1];
 							res = decodeURI(res)
+
+
 							getAllProducesByFaceCode(7);
 							console.log(res);
-							alert("该顾客的表情为：" + res+"特别推荐商品请查看推荐列表@_@~");
+							alert("该顾客的表情为：" + facecode+",特别推荐商品请查看推荐列表@_@~");
+
+							faceRecommand()
+
 						}
 						, error: function () {
 							console.log("服务端异常！");
@@ -157,6 +165,8 @@
 					canvas.parentNode.removeChild(canvas);*/
 					$("canvas").hide();
 				};
+
+
 				function getAllProducesByFaceCode(faceCode){
 					var allProducts = null;
 					var nothing = {};
@@ -181,9 +191,57 @@
 						}
 					});
 					//划重点划重点，这里的eval方法不同于prase方法，外面加括号
-					allProducts = eval("("+allProducts+")");
+					// allProducts = eval("("+allProducts+")");
 					return allProducts;
 				}
+
+
+				var loading = layer.load(0);
+				var productType = new Array;
+				productType[1] = "原叶奶茶";
+				productType[2] = "摇摇奶昔";
+				productType[3] = "冰淇淋圣代";
+				productType[4] = "真鲜果茶";
+				productType[5] = "芝士奶盖";
+				productType[6] = "特色奶茶";
+				productType[7] = "原叶纯茶";
+				productType[8] = "个性化推荐";
+				function faceRecommand() {
+					var mark = new Array;
+					mark[1] = 0;
+					mark[2] = 0;
+					mark[3] = 0;
+					mark[4] = 0;
+					mark[5] = 0;
+					mark[6] = 0;
+					mark[7] = 0;
+					mark[8] = 0;
+					user.userId = "${currentUser.id}";
+					var allProduct = getAllProducesByFaceCode()
+					for(var i=0;i<allProduct.length;i++){
+						if(allProduct[i].traffic == null || allProduct[i].id == undefined || allProduct[i].traffic =="") {
+
+						}else {
+
+							var html = "";
+							var imgURL = "/Shopping/img/"+allProduct[i].id+".jpg";
+							html += '<div class="col-sm-4 col-md-4" >'+
+									'<div class="boxes pointer" onclick="productDetail('+allProduct[i].id+')">'+
+									'<div class="big bigimg">'+
+									'<img src="'+imgURL+'">'+
+									'</div>'+
+									'<p class="product-name">'+allProduct[i].name+'</p>'+
+									'<p class="product-price">¥'+allProduct[i].price+'</p>'+
+									'</div>'+
+									'</div>';
+							var id = "productArea8";
+							var productArea = document.getElementById(id);
+							productArea.innerHTML += html;
+						}
+					}
+					layer.close(loading);
+				}
+
 
 			</script>
 
