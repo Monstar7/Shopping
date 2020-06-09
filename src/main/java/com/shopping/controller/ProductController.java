@@ -347,7 +347,9 @@ public class ProductController {
             if(productImgUpload != null && !productImgUpload.isEmpty()) {
                 //F:\IdeaProjects\ShopRar\Shopping-master\webapp\static\img\55.jpg
                 //String fileRealPath = request.getSession().getServletContext().getRealPath("/static/img");
-                String fileRealPath = "F:\\IdeaProjects\\ShopRar\\Shopping-master\\src\\main\\webapp\\static\\img\\";
+
+            //    String fileRealPath = "F:\\IdeaProjects\\ShopRar\\Shopping-master\\src\\main\\webapp\\static\\img\\";
+                String fileRealPath = "C:\\Users\\10230\\Desktop\\Shopping-Recommand-for-Spring-SpringMVC-Hibernate-master\\src\\main\\webapp\\static\\img";
                 int id = productService.getProduct(pname).getId();
                 String fileName = String.valueOf(id)+".jpg";
                 File fileFolder = new File(fileRealPath);

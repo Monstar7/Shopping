@@ -98,23 +98,23 @@ public class FaceImpl implements Face{
         switch (s){
             case "angry" :
                 faceRes = "愤怒";
-                faceCode = "1";
+                faceCode = "1";   //冷饮
                 break;
             case "disgust" :
                 faceRes = "厌恶";
-                faceCode = "2";
+                faceCode = "2";     //爽口
                 break;
             case "fear" :
                 faceRes = "恐惧";
-                faceCode = "3";
+                faceCode = "3";    //较甜
                 break;
             case "happy" :
                 faceRes = "高兴";
-                faceCode = "4";
+                faceCode = "4";   //新上市
                 break;
             case "sad" :
                 faceRes = "伤心";
-                faceCode = "5";
+                faceCode = "5";   //热饮
                 break;
             case "surprise" :
                 faceRes = "惊讶";
@@ -122,7 +122,7 @@ public class FaceImpl implements Face{
                 break;
             case "neutral" :
                 faceRes = "表情自然";
-                faceCode = "7";
+                faceCode = "7";    //特色
                 break;
             case "pouty" :
                 faceRes = "撅嘴";
