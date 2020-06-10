@@ -30,9 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-/**
- * Created by 14437 on 2017/3/1.
- */
+
 @Controller
 public class ProductController {
     private static String pname="";
