@@ -52,7 +52,10 @@ public class FaceControl {
 //        String pictore = image;
 //        String path = "";
 //        String s = faceImpl.GetImageStr(webappRoot+"static/userImg/"+path);
+
+    //   根据图片人物个数返回表情个数
         List<String> strings = faceImpl.faceIdentify(image);
+     //拿到表情
         String s = strings.get(0);
         List<String> faceRes = faceImpl.faceRecomment(s);
         try {
@@ -70,29 +73,7 @@ public class FaceControl {
     @ResponseBody
     public Map<String,Object> getAllProductFaceRecomand(String faceCode){
         HttpSession httpSession = null;
-        /*List<String> faceRes = new ArrayList<>();
-        Object obj2 = httpSession.getAttribute("faceRes");
-        if (obj2 instanceof ArrayList<?>) {
-            for (Object o : (List<?>) obj2) {
-                faceRes.add(String.class.cast(o));
-            }
-        }
-        if (faceCode == null){
-            Object obj = httpSession.getAttribute("faceRes");
-            if (obj instanceof ArrayList<?>) {
-                for (Object o : (List<?>) obj) {
-                    faceRes.add(String.class.cast(o));
-                }
-            }
-          }*/
-        /**
-         * 1.通过模糊匹配算法，实现数据的匹配与解析。
-         2.	基于内容的推荐，根据类型和商品的详细信息进行解析、录入，进行匹配推荐。
-         3.	基于时间的推荐，根据时间的算法，匹配季节的信息，进行推荐。
-         4.	基于地理位置的推荐，根据所处的地理位置进行算法匹配。
-         5.	基于热度的推荐，进行推荐。
 
-         */
         System.out.println("用户的表情编码："+faceCode);
         List<Product> productList = new ArrayList<>();
         List<Product> productTem = new ArrayList<>();

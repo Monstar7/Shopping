@@ -113,7 +113,6 @@
 					// 这里的img就是得到的图片
 					let pic = img.replace(/^data:image\/(png|jpg);base64,/, "");
 					console.log('img-----', pic);
-					//上传
 					$.ajax({
 						url: "/Shopping/face",
 						type: "POST",

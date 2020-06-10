@@ -137,7 +137,7 @@ public class ProductController {
                     /**
                      * 进行模糊匹配算法，之后进行筛选
                      */
-                    List<Product> ppw =productService.getProductsByKeyWord(""+words);
+                    List<Product> ppw =productService.getProductsByKeyWord("冷饮"+words);
                     if (ppw.size()>0){
                         Product ppv=ppw.get(0);
                         if (ppv!=null&&ppv.getName()!=null&&!ppv.getName().equals("")) {
