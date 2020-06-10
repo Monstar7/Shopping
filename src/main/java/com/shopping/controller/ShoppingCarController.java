@@ -67,6 +67,9 @@ public class ShoppingCarController {
     @ResponseBody
     public Map<String,Object> deleteShoppingCar(int userId,int productId){
         shoppingCarService.deleteShoppingCar(userId,productId);
+
+
+
         Map<String, Object> resultMap = new HashMap<String,Object>();
         resultMap.put("result","success");
         System.out.println("我返回了");

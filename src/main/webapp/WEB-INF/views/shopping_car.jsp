@@ -73,6 +73,7 @@
 							'<th>商品名称</th>'+
 							'<th>商品单价</th>'+
 							'<th>商品数量</th>'+
+							'<th> 是否删除</th>'+
 						'</tr>';
 			for(var i=0;i<allShoppingCars.length;i++){
 				var product = getProductById(allShoppingCars[i].productId);
@@ -87,6 +88,9 @@
 						'<td>'+product.name+'</td>'+
 						'<td>'+product.price+'</td>'+
 						'<td>'+allShoppingCars[i].counts+'</td>'+
+						'<td>'+
+						'<button class="btn btn-primary btn-sm" type="submit" onclick="deleteShoppingCar('+allShoppingCars[i].productId+')">删除</button>'+
+						'</td>'+
 						'</tr>';
 			}
 			shoppingCarTable.innerHTML += html;
@@ -314,9 +318,13 @@
                     deleteResult = result.result;
                 },
                 error : function(result) {
-                    layer.alert('查询用户错误');
+                    layer.alert('删除错误');
                 }
             });
+			if(deleteResult != "success")
+				layer.alert("删除商品出错");
+
+			updateShoppingCars();
         }
 	</script>
 

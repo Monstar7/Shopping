@@ -80,35 +80,14 @@
 
             <div class="navbar-form navbar-right">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="输入商品名称！" id="searchKeyWord"/>
+                    <input type="hidden" class="form-control"  id="searchKeyWord"/>
                 </div>
                 <button class="btn btn-default" onclick="searchProduct();">查找商品</button>
             </div>
         </div>
     </div>
 </nav>
-<%--<script type="text/javascript">
-    function searchProduct() {
-        var search = {};
-        search.searchKeyWord = document.getElementById("searchKeyWord").value;
-        var searchResult = "";
-        $.ajax({
-            async : false,
-            type : 'POST',
-            url : '/Shopping/searchPre',
-            data : search,
-            dataType : 'json',
-            success : function(result) {
-                searchResult = result.result;
-            },
-            error : function(result) {
-                layer.alert('查询错误');
-            }
-        });
-        if(searchResult == "success")
-            window.location.href = "/Shopping/search";
-    }
-</script>--%>
+
 
 <script type="text/javascript">
     function searchProduct() {
